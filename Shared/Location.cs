@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace SurfUpModelLayer.Shared
 {
-    internal class Location
+    public class Location
     {
+        long Longitude { get; set; }
+        long Latitude { get; set; }
+        List<Tag> Tags { get; set; }
     }
 }
