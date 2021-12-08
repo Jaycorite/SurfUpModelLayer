@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "afb145e5-a0fc-4d69-8581-35b17a316839": {
+      "ProjectGuid": "afb145e5-a0fc-4d69-8581-35b17a316839",
+      "DisplayName": "SurfsUpBlazor.Server",
+      "ColorIndex": 0
+    },
+    "522850c4-4317-41c1-bc52-90acc85e8e1d": {
+      "ProjectGuid": "522850c4-4317-41c1-bc52-90acc85e8e1d",
+      "DisplayName": "SurfsUpBlazor.Client",
+      "ColorIndex": 1
+    },
+    "91f0e34b-98ad-4bb4-97d3-482234d36473": {
+      "ProjectGuid": "91f0e34b-98ad-4bb4-97d3-482234d36473",
+      "DisplayName": "SurfsUpBlazor.Shared",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

@@ -1,0 +1,11 @@
+C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\bin\Debug\net6.0\SurfsUpBlazor.Shared.deps.json
+C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\bin\Debug\net6.0\SurfsUpBlazor.Shared.dll
+C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\bin\Debug\net6.0\ref\SurfsUpBlazor.Shared.dll
+C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\bin\Debug\net6.0\SurfsUpBlazor.Shared.pdb
+C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\obj\Debug\net6.0\SurfsUpBlazor.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\obj\Debug\net6.0\SurfsUpBlazor.Shared.AssemblyInfoInputs.cache
+C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\obj\Debug\net6.0\SurfsUpBlazor.Shared.AssemblyInfo.cs
+C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\obj\Debug\net6.0\SurfsUpBlazor.Shared.csproj.CoreCompileInputs.cache
+C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\obj\Debug\net6.0\SurfsUpBlazor.Shared.dll
+C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\obj\Debug\net6.0\ref\SurfsUpBlazor.Shared.dll
+C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\obj\Debug\net6.0\SurfsUpBlazor.Shared.pdb
