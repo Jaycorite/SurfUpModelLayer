@@ -9,6 +9,7 @@ namespace SurfsUpBlazor.Shared.Models
 {
     public class RentalPost
     {
+        public int Id { get; set; }
         [Required]
         [StringLength(10, ErrorMessage = "Title is too long.")]
         public string Title { get; set; } = "Title";
@@ -35,7 +36,7 @@ namespace SurfsUpBlazor.Shared.Models
         [Required]
         public DateTime AvailableDateTo { get; set; } = DateTime.Now.Date.AddDays(1);     
         
-        public DateTime PostedDate { get; private set; } = DateTime.Now.Date;
+        public DateTime PostedDate { get; set; } = DateTime.Now.Date;
 
         public override string ToString()
         {

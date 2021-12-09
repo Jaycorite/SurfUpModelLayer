@@ -1,77 +1,59 @@
 ﻿@page "/rental"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using SurfsUpBlazor.Shared
+@attribute [Authorize]
+@inject HttpClient Http
 
+@if (RentalPosts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
 <div class="container">
     <div class="row">
-        @foreach (RentalPost rentalPost in RentalPosts)
-        {
-            <Card DisplayRentalPost="@rentalPost" Category="@rentalPost.Category" />
-        }
-    </div>
+            @foreach (var rentalPost in RentalPosts)
+            {
+                <Card DisplayRentalPost="@rentalPost" Category="@rentalPost.Category" />
+            }
+        </div>
 </div>
-
+}
 
 @code {
     // Template list for display
     // Load from database
-    public List<RentalPost> RentalPosts = new()
-        {
-            new RentalPost()
-            {
-                Title = "My rental Item",
-                Description = "Jonatan kan godt lide at spise djungelvrael, men han får så dårlig mave af det :(",
-                Price = 100,
-                Deposit = 400,
-                Category = "Surfboard"
-            },
-
-            new RentalPost()
-            {
-                Title = "Second rental Item",
-                Description = "Jonatan har lige været ude at skide, så nu kan han spise flere djungelvrael :)",
-                Price = 300,
-                Deposit = 100,
-                Category = "Paddleboard"
-            },
-
-            new RentalPost()
-            {
-                Title = "3rd rental Item",
-                Description = "Jonatan skal ud og holde rygepause nu, hvorefter han tager et slag Hearthstone ;)",
-                Price = 300,
-                Deposit = 100,
-                Category = "Kiteboard"
-            },
-
-            new RentalPost()
-            {
-                Title = "My rental Item",
-                Description = "Jonatan kan godt lide at spise djungelvrael, men han får så dårlig mave af det :(",
-                Price = 100,
-                Deposit = 400,
-                Category = "Surfboard"
-            },
-
-            new RentalPost()
-            {
-                Title = "Second rental Item",
-                Description = "Jonatan har lige været ude at skide, så nu kan han spise flere djungelvrael :)",
-                Price = 300,
-                Deposit = 100,
-                Category = "Paddleboard"
-            },
-
-            new RentalPost()
-            {
-                Title = "3rd rental Item",
-                Description = "Jonatan skal ud og holde rygepause nu, hvorefter han tager et slag Hearthstone ;)",
-                Price = 300,
-                Deposit = 100,
-                Category = "Kiteboard"
-            }
-        };
+    public List<RentalPost>? RentalPosts = new(){};
+    public RentalPost? RentalPostsTest;
 
     // Is the uploaded image stored as a string
     string imgUrl = "/Images/placeholder.png";
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            RentalPosts = await Http.GetFromJsonAsync<List<RentalPost>>("RentalPost");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+
+        // Virker ikke
+        //try
+        //{
+        //    RentalPostsTest = await Http.GetFromJsonAsync<RentalPost>("RentalPost/1");
+        //}
+        //catch (AccessTokenNotAvailableException exception)
+        //{
+        //    exception.Redirect();
+        //}
+    }
+
+
 
     /* To Do:
     * Make the Rental Post Creator look nicer / more intuitive
@@ -84,9 +66,9 @@
 
 
 
-     /* Done:
-     * Create a card to use for displaying Rental Posts (when browsing)
-     * Make dummy data for testing the RentalBrowser
-     * Create the layout / grid for displaying the Rental Posts
+    /* Done:
+    * Create a card to use for displaying Rental Posts (when browsing)
+    * Make dummy data for testing the RentalBrowser
+    * Create the layout / grid for displaying the Rental Posts
     */
 }

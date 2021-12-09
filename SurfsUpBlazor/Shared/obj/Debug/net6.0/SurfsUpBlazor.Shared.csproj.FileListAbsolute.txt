@@ -9,3 +9,4 @@ C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\obj\Deb
 C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\obj\Debug\net6.0\SurfsUpBlazor.Shared.dll
 C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\obj\Debug\net6.0\ref\SurfsUpBlazor.Shared.dll
 C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\obj\Debug\net6.0\SurfsUpBlazor.Shared.pdb
+C:\Users\sebas\Desktop\GitProjects\SurfUpModelLayer\SurfsUpBlazor\Shared\obj\Debug\net6.0\SurfsUpBlazor.Shared.csproj.AssemblyReference.cache

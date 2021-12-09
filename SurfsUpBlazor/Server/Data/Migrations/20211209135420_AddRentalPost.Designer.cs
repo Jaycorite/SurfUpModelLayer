@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SurfsUpBlazor.Server.Data;
 
@@ -11,9 +12,10 @@ using SurfsUpBlazor.Server.Data;
 namespace SurfsUpBlazor.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211209135420_AddRentalPost")]
+    partial class AddRentalPost
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -405,32 +407,6 @@ namespace SurfsUpBlazor.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RentalPosts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AvailableDateFrom = new DateTime(2021, 12, 9, 16, 6, 14, 143, DateTimeKind.Local).AddTicks(9035),
-                            AvailableDateTo = new DateTime(2021, 12, 10, 0, 0, 0, 0, DateTimeKind.Local),
-                            Category = "Surfboard",
-                            Deposit = 300,
-                            Description = "A nice looking surfboard",
-                            PostedDate = new DateTime(2021, 12, 9, 16, 6, 14, 143, DateTimeKind.Local).AddTicks(9037),
-                            Price = 100,
-                            Title = "First post"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AvailableDateFrom = new DateTime(2021, 12, 9, 16, 6, 14, 143, DateTimeKind.Local).AddTicks(9043),
-                            AvailableDateTo = new DateTime(2021, 12, 10, 0, 0, 0, 0, DateTimeKind.Local),
-                            Category = "Paddleboard",
-                            Deposit = 200,
-                            Description = "I hope it works",
-                            PostedDate = new DateTime(2021, 12, 9, 16, 6, 14, 143, DateTimeKind.Local).AddTicks(9045),
-                            Price = 200,
-                            Title = "2 post"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

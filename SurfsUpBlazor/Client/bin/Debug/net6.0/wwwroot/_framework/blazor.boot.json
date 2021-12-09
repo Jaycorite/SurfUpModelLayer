@@ -199,15 +199,15 @@
       "mscorlib.dll": "sha256-tlYWYAypJO+6gsCjV734iAJn8xcZYhUjM7vgxDLJluE=",
       "netstandard.dll": "sha256-E48Na3ZQWKExltzTwgP0Ao+UqWhiVYeerXfUL9lEc+c=",
       "System.Private.CoreLib.dll": "sha256-J85Z1XnwapHef31sR58JFq+0HrFP5BjOoObPKjdFHCw=",
-      "SurfsUpBlazor.Shared.dll": "sha256-qWNCNc7xBilOg8fyA9CiiDLn1hAafMJ0uU\/g+TdsQ10=",
-      "SurfsUpBlazor.Client.dll": "sha256-fCDdGP\/PYCLleMFGokwQ3KKOCmWJKRN78tBB2RYD2R0="
+      "SurfsUpBlazor.Shared.dll": "sha256-oYPI7YE4DYwOEvZ2EMiIkabfr8uyAcZeUD98ZN3Qpz0=",
+      "SurfsUpBlazor.Client.dll": "sha256-G7zr2rBUCOMr+VNDktjCRJ62SgawdifE31ndK7iCxDc="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "SurfsUpBlazor.Shared.pdb": "sha256-Ivw9OBgEGG+314w\/U+TDn5vymzQFSL0VHe\/4VOii2uA=",
-      "SurfsUpBlazor.Client.pdb": "sha256-49E8MV+n\/oO+ldbqqq+5ZqzQ4pM\/7HVMk2i+8C6xbpk="
+      "SurfsUpBlazor.Shared.pdb": "sha256-RgMUoXfvwURW4b8KxM35V0umdsqkJ1eQAJCFCtSkwfc=",
+      "SurfsUpBlazor.Client.pdb": "sha256-V6bXfIRPcNImamFgQMO+xoJdS0E8clZIgMFHV5stLYM="
     },
     "runtime": {
       "dotnet.6.0.0.ofogitqj44.js": "sha256-LOq52qjRa3+zt3w4UL10rS3UdwHxVQxW0JAsMPO9QAM=",
