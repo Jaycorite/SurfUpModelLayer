@@ -365,6 +365,76 @@ namespace SurfsUpBlazor.Server.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("SurfsUpBlazor.Shared.Models.BlogPost", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("PostedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BlogPosts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            PostedDate = new DateTime(2022, 1, 3, 7, 16, 51, 475, DateTimeKind.Local).AddTicks(7755),
+                            Text = "A nice looking surfboard.",
+                            Title = "First Blog"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            PostedDate = new DateTime(2022, 1, 5, 7, 16, 51, 475, DateTimeKind.Local).AddTicks(7759),
+                            Text = "A nice looking surfboard.",
+                            Title = "2. Blog"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            PostedDate = new DateTime(2022, 1, 6, 7, 16, 51, 475, DateTimeKind.Local).AddTicks(7761),
+                            Text = "A nice looking surfboard.",
+                            Title = "3rd blog"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            PostedDate = new DateTime(2022, 1, 8, 7, 16, 51, 475, DateTimeKind.Local).AddTicks(7764),
+                            Text = "A nice looking surfboard.",
+                            Title = "The last Blog"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            PostedDate = new DateTime(2022, 1, 10, 7, 16, 51, 475, DateTimeKind.Local).AddTicks(7767),
+                            Text = "A nice looking surfboard.",
+                            Title = "Just a Blog"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            PostedDate = new DateTime(2022, 1, 14, 7, 16, 51, 475, DateTimeKind.Local).AddTicks(7769),
+                            Text = "A nice looking surfboard.",
+                            Title = "My new Blog"
+                        });
+                });
+
             modelBuilder.Entity("SurfsUpBlazor.Shared.Models.RentalPost", b =>
                 {
                     b.Property<int>("Id")
@@ -399,8 +469,8 @@ namespace SurfsUpBlazor.Server.Data.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("Id");
 
@@ -410,26 +480,74 @@ namespace SurfsUpBlazor.Server.Data.Migrations
                         new
                         {
                             Id = 1,
-                            AvailableDateFrom = new DateTime(2021, 12, 9, 16, 6, 14, 143, DateTimeKind.Local).AddTicks(9035),
-                            AvailableDateTo = new DateTime(2021, 12, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            AvailableDateFrom = new DateTime(2022, 1, 3, 7, 16, 51, 475, DateTimeKind.Local).AddTicks(7572),
+                            AvailableDateTo = new DateTime(2022, 1, 4, 0, 0, 0, 0, DateTimeKind.Local),
                             Category = "Surfboard",
                             Deposit = 300,
-                            Description = "A nice looking surfboard",
-                            PostedDate = new DateTime(2021, 12, 9, 16, 6, 14, 143, DateTimeKind.Local).AddTicks(9037),
+                            Description = "A nice looking surfboard.",
+                            PostedDate = new DateTime(2022, 1, 3, 7, 16, 51, 475, DateTimeKind.Local).AddTicks(7575),
                             Price = 100,
                             Title = "First post"
                         },
                         new
                         {
                             Id = 2,
-                            AvailableDateFrom = new DateTime(2021, 12, 9, 16, 6, 14, 143, DateTimeKind.Local).AddTicks(9043),
-                            AvailableDateTo = new DateTime(2021, 12, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            AvailableDateFrom = new DateTime(2022, 1, 3, 7, 16, 51, 475, DateTimeKind.Local).AddTicks(7580),
+                            AvailableDateTo = new DateTime(2022, 1, 4, 0, 0, 0, 0, DateTimeKind.Local),
                             Category = "Paddleboard",
                             Deposit = 200,
-                            Description = "I hope it works",
-                            PostedDate = new DateTime(2021, 12, 9, 16, 6, 14, 143, DateTimeKind.Local).AddTicks(9045),
+                            Description = "I hope it works.",
+                            PostedDate = new DateTime(2022, 1, 3, 7, 16, 51, 475, DateTimeKind.Local).AddTicks(7583),
                             Price = 200,
                             Title = "2 post"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AvailableDateFrom = new DateTime(2022, 1, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            AvailableDateTo = new DateTime(2022, 1, 18, 0, 0, 0, 0, DateTimeKind.Local),
+                            Category = "Kiteboard",
+                            Deposit = 250,
+                            Description = "Kiteboard for a nice summer day.",
+                            PostedDate = new DateTime(2022, 1, 3, 7, 16, 51, 475, DateTimeKind.Local).AddTicks(7590),
+                            Price = 150,
+                            Title = "3rd post"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AvailableDateFrom = new DateTime(2022, 1, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            AvailableDateTo = new DateTime(2022, 1, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            Category = "Paddleboard",
+                            Deposit = 320,
+                            Description = "My favorite paddleboard in good condition.",
+                            PostedDate = new DateTime(2022, 1, 3, 7, 16, 51, 475, DateTimeKind.Local).AddTicks(7598),
+                            Price = 75,
+                            Title = "4th post"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AvailableDateFrom = new DateTime(2022, 1, 5, 0, 0, 0, 0, DateTimeKind.Local),
+                            AvailableDateTo = new DateTime(2022, 1, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            Category = "Kiteboard",
+                            Deposit = 400,
+                            Description = "This surfboard will give you luck.",
+                            PostedDate = new DateTime(2022, 1, 3, 7, 16, 51, 475, DateTimeKind.Local).AddTicks(7605),
+                            Price = 200,
+                            Title = "This is a great post"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AvailableDateFrom = new DateTime(2022, 2, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            AvailableDateTo = new DateTime(2022, 2, 5, 0, 0, 0, 0, DateTimeKind.Local),
+                            Category = "Surfboard",
+                            Deposit = 250,
+                            Description = "I hope you will treat this board with care.",
+                            PostedDate = new DateTime(2022, 1, 3, 7, 16, 51, 475, DateTimeKind.Local).AddTicks(7612),
+                            Price = 100,
+                            Title = "Best post"
                         });
                 });
 

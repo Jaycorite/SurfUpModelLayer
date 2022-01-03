@@ -1,10 +1,11 @@
-﻿@page "/rental"
+﻿@page "/rental/browser"
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using SurfsUpBlazor.Shared
 @attribute [Authorize]
 @inject HttpClient Http
 
+<PageTitle>Browsing Rental Posts</PageTitle>
 @if (RentalPosts == null)
 {
     <p><em>Loading...</em></p>
@@ -22,15 +23,9 @@ else
 }
 
 @code {
-    // Template list for display
-    // Load from database
-    public List<RentalPost>? RentalPosts = new(){};
-    public RentalPost? RentalPostsTest;
 
-    // Is the uploaded image stored as a string
-    string imgUrl = "/Images/placeholder.png";
-
-
+    // Load RentalPosts from database
+    public List<RentalPost>? RentalPosts = new();
     protected override async Task OnInitializedAsync()
     {
         try
@@ -42,10 +37,10 @@ else
             exception.Redirect();
         }
 
-        // Virker ikke
+        //// For getting an item based on the id
         //try
         //{
-        //    RentalPostsTest = await Http.GetFromJsonAsync<RentalPost>("RentalPost/1");
+        //    RentalPostTest = await Http.GetFromJsonAsync<RentalPost>("RentalPost/1");
         //}
         //catch (AccessTokenNotAvailableException exception)
         //{
@@ -56,19 +51,8 @@ else
 
 
     /* To Do:
-    * Make the Rental Post Creator look nicer / more intuitive
-    * Create a simple txt file persistence system, for saving and loading Rental Posts
-    * Fix the Image thing (Can't use csv file for the pictures since ByteArrays are not nice to save)
-    * Load the posts for the RentalBrowser with Async like in FetchData
-    * Add sorting functionality
+    * Posts to Database for Blog and Rental posts are missing
+    * Add sorting functionality (low priority)
     * Evt. features with login (low priority)
-    */
-
-
-
-    /* Done:
-    * Create a card to use for displaying Rental Posts (when browsing)
-    * Make dummy data for testing the RentalBrowser
-    * Create the layout / grid for displaying the Rental Posts
     */
 }

@@ -1,11 +1,16 @@
-﻿@page "/rentalpost"
+﻿@page "/rental/createpost"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using SurfsUpBlazor.Shared
+@attribute [Authorize]
+@inject HttpClient Http
 
 <PageTitle>Your Rental Post</PageTitle>
 
 <h1>Rental</h1>
 
 <p>
-    @*The form that creates a RentalPost (Not implemented: sends it to another component for database storage)*@
+    @*The form that creates a RentalPost*@
     <EditForm Model="@rentalPost" OnValidSubmit="@HandleValidSubmit">
         <DataAnnotationsValidator />
         <ValidationSummary />
@@ -37,7 +42,7 @@
 
         Write a description for your rental item:
         <br />
-        <InputText id="name" @bind-Value="rentalPost.Description" />
+        <InputText id="name" @bind-Value="rentalPost.Description"/>
         <br />
 
         Select a date for your rental post:
@@ -76,7 +81,16 @@
     // Is called when the submit from the EditForm is succesful
     private void HandleValidSubmit()
     {
-        Console.WriteLine(rentalPost);
+        // Post it to the database
+        //try
+        //{
+        //    await Http.PostAsync("RentalPost", rentalPost);
+        //}
+        //catch (AccessTokenNotAvailableException exception)
+        //{
+        //    Console.WriteLine(exception.ToString());
+        //}
+        Console.WriteLine("Called: HandleValidSubmit");
     }
 
     // Is the uploaded image stored as a string

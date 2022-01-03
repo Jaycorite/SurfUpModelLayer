@@ -1,41 +1,45 @@
 ﻿@page "/blog"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using SurfsUpBlazor.Shared
+@attribute [Authorize]
+@inject HttpClient Http
 
 <PageTitle>Blog</PageTitle>
 
 <h3>Blog</h3>
 
+@if (BlogPosts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
 <div class="blogBG" opacity="0.5">
     <div class="row">
-        <div class="column">
-            <div class="card">
-                <img src="/Images/beach1.jpg" alt="Some picture" style="width:100%">
-                <div class="container">
-                    <h4><b>Title</b></h4>
-                    <p>Some random blog text</p>
-                </div>
+        @foreach (var blogPost in BlogPosts)
+        {
+            <div class="column">
+                <BlogCard DisplayBlogPost="@blogPost"/>
+                <br>
             </div>
+        }
         </div>
-        <div class="column">
-            <div class="card">
-                <img src="/Images/beach2.jpg" alt="Some picture" style="width:100%">
-                <div class="container">
-                    <h4><b>Title</b></h4>
-                    <p>Some random blog text... bla bla bla bla bla bla bla bla bla bla bla bla bla bla </p>
-                </div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="card">
-                <img src="/Images/beach3.jpg" alt="Some picture" style="width:100%">
-                <div class="container">
-                    <h4><b>Title</b></h4>
-                    <p>Some random blog text... bla bla bla bla bla bla bla bla bla bla bla bla bla bla </p>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
+}
 @code {
+    public List<BlogPost>? BlogPosts = new();
 
-
+    // Load BlogPosts from database
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            BlogPosts = await Http.GetFromJsonAsync<List<BlogPost>>("BlogPost");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
 }

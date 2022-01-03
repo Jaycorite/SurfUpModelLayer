@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5HuMqTcFE0UaXOQ3UW9lA3sSoxsZh6FjhUonMhi/FpJYRa6Eimxl1RaCMqIvMTUVeCswYLbRvsnwZil634LveQ==",
+  "dgSpecHash": "scZTcZh7xP4KSmPiAEW4Kjpm7O1jh0LnLDLouFQneokFvWifOx2vc9wnzd3FEENAeyFw0N59z8feR5tdUeCa+g==",
   "success": true,
   "projectFilePath": "C:\\Users\\sebas\\Desktop\\GitProjects\\SurfUpModelLayer\\SurfsUpBlazor\\Client\\SurfsUpBlazor.Client.csproj",
   "expectedPackageFiles": [
@@ -36,7 +36,7 @@
     "C:\\Users\\sebas\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\sebas\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
     "C:\\Users\\sebas\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512",
-    "C:\\Users\\sebas\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.0\\microsoft.netcore.app.runtime.mono.browser-wasm.6.0.0.nupkg.sha512"
+    "C:\\Users\\sebas\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.1\\microsoft.netcore.app.runtime.mono.browser-wasm.6.0.1.nupkg.sha512"
   ],
   "logs": []
 }
