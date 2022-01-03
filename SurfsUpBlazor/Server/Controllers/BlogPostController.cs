@@ -17,7 +17,7 @@ namespace SurfsUpBlazor.Server.Controllers
             _context = context;
         }
 
-        // Get all RentalPosts
+        // Get all BlogPosts
         [HttpGet]
         public async Task<List<BlogPost>> Get()
         {

@@ -2,8 +2,11 @@
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using SurfsUpBlazor.Shared
+@using System.Text.Json
 @attribute [Authorize]
 @inject HttpClient Http
+@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime
 
 <PageTitle>Your Rental Post</PageTitle>
 
@@ -42,7 +45,7 @@
 
         Write a description for your rental item:
         <br />
-        <InputText id="name" @bind-Value="rentalPost.Description"/>
+        <InputText id="name" @bind-Value="rentalPost.Description" />
         <br />
 
         Select a date for your rental post:
@@ -79,18 +82,25 @@
         };
 
     // Is called when the submit from the EditForm is succesful
-    private void HandleValidSubmit()
+    private async Task HandleValidSubmit()
     {
         // Post it to the database
-        //try
-        //{
-        //    await Http.PostAsync("RentalPost", rentalPost);
-        //}
-        //catch (AccessTokenNotAvailableException exception)
-        //{
-        //    Console.WriteLine(exception.ToString());
-        //}
-        Console.WriteLine("Called: HandleValidSubmit");
+        try
+        {
+            // Asks if the user wants to submit the form and return to the Home page
+            if (!await JSRuntime.InvokeAsync<bool>("confirm", $"Submit your post and return to the Home page?"))
+            {
+                return;
+            }
+
+            await Http.PostAsJsonAsync<RentalPost>("RentalPost", rentalPost);
+            Console.WriteLine("Try: HandleValidSubmit");
+            NavManager.NavigateTo("/");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            Console.WriteLine("Failed to Post RentalPost","\n",exception.ToString());
+        }        
     }
 
     // Is the uploaded image stored as a string
