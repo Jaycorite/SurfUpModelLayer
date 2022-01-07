@@ -95,12 +95,12 @@
 
             await Http.PostAsJsonAsync<RentalPost>("RentalPost", rentalPost);
             Console.WriteLine("Try: HandleValidSubmit");
-            NavManager.NavigateTo("/");
+            NavManager.NavigateTo("/rental/browser");
         }
         catch (AccessTokenNotAvailableException exception)
         {
             Console.WriteLine("Failed to Post RentalPost","\n",exception.ToString());
-        }        
+        }
     }
 
     // Is the uploaded image stored as a string
