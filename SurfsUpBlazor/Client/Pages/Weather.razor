@@ -1,0 +1,125 @@
+﻿@page "/weather"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using SurfsUpBlazor.Shared
+@attribute [Authorize]
+@inject HttpClient Http
+
+<h1>Weather Stations</h1>
+
+<p>This component demonstrates fetching data from the DMI server.</p>
+
+@if (hasContent == false)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{<table class="table">
+        <thead>
+            <tr>
+                <th>StationID</th>
+                <th>StationName</th>
+                <th>StationCountry</th>
+                <th>StationOwner</th>
+                <th>OperationFrom</th>
+                <th>OperationTo</th>
+                <th>IsActive</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (WeatherStation weatherStation in WeatherStations)
+            {
+                <tr>
+                    <td>@weatherStation.StationID</td>
+                    <td>@weatherStation.StationName</td>
+                    <td>@weatherStation.StationCountry</td>
+                    <td>@weatherStation.StationOwner</td>
+                    <td>@weatherStation.OperationFrom</td>
+                    <td>@weatherStation.OperationTo</td>
+                    <td>@weatherStation.IsActive</td>
+                    <td>@weatherStation.Latitude</td>
+                    <td>@weatherStation.Longitude</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+    bool hasContent = false;
+    public List<WeatherStation>? WeatherStations = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get,"https://dmigw.govcloud.dk/v2/metObs/collections/station/items?limit=100&api-key=635f3412-861f-4306-a60a-3c5b25671805");
+            HttpResponseMessage response = await Http.SendAsync(request);
+            var content = await response.Content.ReadAsStringAsync();
+            parseDMIToList(content);
+            hasContent = true;
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            Console.WriteLine("Failed to connect to DMI!");
+            exception.Redirect();
+        }
+    }
+    
+    private void parseDMIToList(string responseString)
+    {
+        // Cut out the beginning part of the string
+        responseString = responseString.Substring(41);
+        // Cut out the end of the string
+        responseString = responseString.Substring(0, responseString.Length - 478);
+        // Make an array of all the rows of string data for each station
+        string[] ParsedString = responseString.Split("}},{");
+
+        for(int i = 0; i < ParsedString.Length; i++)
+        {
+            WeatherStations.Add(new WeatherStation());
+            string tempStr = ParsedString[i];
+            
+            // Cut string so the station longitude is first
+            tempStr = tempStr.Substring(tempStr.IndexOf("coordinates") + 14);
+            WeatherStations[i].Longitude = tempStr.Substring(0, tempStr.IndexOf(','));
+
+            // Cut string so the station latitude is first
+            tempStr = tempStr.Substring(tempStr.IndexOf(",") + 1);
+            WeatherStations[i].Latitude = tempStr.Substring(0, tempStr.IndexOf(']'));
+
+            // Cut string so the station country is first
+            tempStr = tempStr.Substring(tempStr.IndexOf("country") + 10);
+            // Get a substring of the station country and set the station country property
+            WeatherStations[i].StationCountry = tempStr.Substring(0, tempStr.IndexOf('"'));
+
+            // Cut string so the station name is first
+            tempStr = tempStr.Substring(tempStr.IndexOf("name") + 7);
+            // Get a substring of the station name and set the station name property
+            WeatherStations[i].StationName = tempStr.Substring(0, tempStr.IndexOf('"'));
+            
+            // Cut string so operationFrom is first, and set it
+            tempStr = tempStr.Substring(tempStr.IndexOf("operationFrom") + 16);
+            WeatherStations[i].OperationFrom = tempStr.Substring(0, tempStr.IndexOf('T'));
+            
+            // Cut string so operationTo is first, and set it
+            tempStr = tempStr.Substring(tempStr.IndexOf("operationTo") + 13);
+            WeatherStations[i].OperationTo = tempStr.Substring(0, tempStr.IndexOf(','));
+            
+            // Cut string so owner is first, and set it
+            tempStr = tempStr.Substring(tempStr.IndexOf("owner") + 8);
+            WeatherStations[i].StationOwner = tempStr.Substring(0, tempStr.IndexOf('"'));
+
+            // Cut string so stationID is first, and set it
+            tempStr = tempStr.Substring(tempStr.IndexOf("stationId") + 12);
+            WeatherStations[i].StationID = tempStr.Substring(0, tempStr.IndexOf('"'));
+
+            // Cut string so IsActive is first, and set it
+            tempStr = tempStr.Substring(tempStr.IndexOf("status") + 9);
+            WeatherStations[i].IsActive = tempStr.Substring(0, tempStr.IndexOf('"'));
+        }
+    }
+}
