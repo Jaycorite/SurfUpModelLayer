@@ -12,6 +12,19 @@
 }
 else
 {
+<div>
+    Sort by selected value
+    <select @onchange="SortRentalPosts">
+    @foreach (var template in templates)
+    {
+        <option value=@template>@template</option>
+    }
+    </select>
+    <br>
+    Sort by Ascending
+    <input type="checkbox" @bind="sortAscending">
+</div>    
+
 <div class="container">
     <div class="row">
             @foreach (var rentalPost in RentalPosts)
@@ -36,8 +49,39 @@ else
         {
             exception.Redirect();
         }
+    }
 
-        //// For getting an item based on the id
+    string SelectedString = "Date";
+    bool sortAscending = true;
+    List<string> templates = new List<string>() { "Date", "Price", "Category" };
+    void SortRentalPosts(ChangeEventArgs e)
+    {
+        // Sorting using a switch statement, instead of using reflection (Calling methods by using a string)
+        switch (e.Value.ToString())
+        {
+            case "Date":
+            if (sortAscending){RentalPosts = RentalPosts.OrderBy(o=>o.AvailableDateFrom).ToList();}
+            else{RentalPosts = RentalPosts.OrderByDescending(o=>o.AvailableDateFrom).ToList();}
+            break;
+            
+            case "Price":
+            if (sortAscending){RentalPosts = RentalPosts.OrderBy(o=>o.Price).ToList();}
+            else{RentalPosts = RentalPosts.OrderByDescending(o=>o.Price).ToList();}
+            break;
+            
+            case "Category":
+            if (sortAscending){RentalPosts = RentalPosts.OrderBy(o=>o.Category).ToList();}
+            else{RentalPosts = RentalPosts.OrderByDescending(o=>o.Category).ToList();}
+            break;
+            
+            default:
+            RentalPosts = RentalPosts.OrderBy(o=>o.Id).ToList();
+            break;
+        }
+        StateHasChanged();
+    }
+
+        // For getting an item based on the id
         //try
         //{
         //    RentalPostTest = await Http.GetFromJsonAsync<RentalPost>("RentalPost/1");
@@ -46,12 +90,4 @@ else
         //{
         //    exception.Redirect();
         //}
-    }
-
-
-
-    /* To Do:
-    * Add sorting functionality (low priority)
-    * Evt. features with login (low priority)
-    */
 }
